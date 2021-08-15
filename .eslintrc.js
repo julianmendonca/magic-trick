@@ -22,6 +22,8 @@ module.exports = {
 	plugins: ['react', 'prettier', 'import', '@typescript-eslint'],
 	rules: {
 		'jsx-quotes': ['error', 'prefer-single'],
+		'react/jsx-uses-react': 'off',
+		'react/react-in-jsx-scope': 'off',
 		'@typescript-eslint/no-unused-vars': [
 			'error',
 			{
