@@ -1,0 +1,67 @@
+require: dotenv/config
+overwrite: true
+schema:
+    - ${REACT_APP_HASURA_ENDPOINT}:
+          headers:
+              x-hasura-admin-secret: ${HASURA_ADMIN_SECRET}
+documents: ['src/**/*.gql']
+hooks:
+    afterAllFileWrite:
+        - prettier --write
+generates:
+    # Get schemas from server
+    src/graphql/autogenerate/schemas.ts:
+        plugins:
+            - typescript
+
+    # Create operations based on queries
+    src/graphql/autogenerate/operations.ts:
+        preset: import-types
+        presetConfig:
+            typesPath: ./schemas
+        plugins:
+            - typescript-operations
+        config:
+            flattenGeneratedTypes: true
+
+    # Create hooks based on queries
+    src/graphql/autogenerate/hooks.ts:
+        preset: import-types
+        presetConfig:
+            typesPath: ./operations
+        plugins:
+            - typescript-react-apollo
+        config:
+            withHooks: true
+            withHOC: false
+            withComponent: false
+            flattenGeneratedTypes: true
+            withRefetchFn: true
+
+    # Get name of all queries, mutations and fragments
+    # src/graphql/autogenerate/named-operations.ts:
+    #     plugins:
+    #         - named-operations-object
+    #     config:
+    #         identifierName: namedOperations
+
+    # Get the TypedTypePolicies
+    # src/graphql/autogenerate/apollo-helpers.ts:
+    #     plugins:
+    #         - typescript-apollo-client-helpers
+
+    # Get schema in JSON Format
+    # src/graphql/autogenerate/schema.json:
+    #     documents: "src/graphql/queries/**/**.gql"
+    #     plugins:
+    #         - "introspection"
+    #     config:
+    #         minify: true
+
+    # Get schema in graphql Format
+    src/graphql/autogenerate/schema.graphql:
+        plugins:
+            - schema-ast
+        config:
+            includeDirectives: true
+            flattenGeneratedTypes: true

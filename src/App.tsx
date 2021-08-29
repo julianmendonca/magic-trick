@@ -1,25 +1,47 @@
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import { createTheme, ThemeProvider } from '@material-ui/core'
 import React from 'react'
-import './App.css'
-import logo from './logo.svg'
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            // light: will be calculated from palette.primary.main,
+            main: '#ff4400',
+            // dark: will be calculated from palette.primary.main,
+            // contrastText: will be calculated to contrast with palette.primary.main
+        },
+        secondary: {
+            light: '#0066ff',
+            main: '#0044ff',
+            // dark: will be calculated from palette.secondary.main,
+            contrastText: '#ffcc00',
+        },
+        // Used by `getContrastText()` to maximize the contrast between
+        // the background and the text.
+        contrastThreshold: 3,
+        // Used by the functions below to shift a color's luminance by approximately
+        // two indexes within its tonal palette.
+        // E.g., shift from Red 500 to Red 300 or Red 700.
+        tonalOffset: 0.2,
+    },
+})
+
+const client = new ApolloClient({
+    uri: process.env.REACT_APP_HASURA_ENDPOINT || '',
+    headers: {
+        'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET || '',
+    },
+    cache: new InMemoryCache(),
+})
+
 function App() {
-	return (
-		<div className="App">
-			<header className="App-header">
-				<img alt="logo" className="App-logo" src={logo} />
-				<p>
-					Edit <code>src/App.tsx</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					rel="noopener noreferrer"
-					target="_blank"
-				>
-					Learn React
-				</a>
-			</header>
-		</div>
-	)
+    return (
+        <ApolloProvider client={client}>
+            <ThemeProvider theme={theme}>
+                <div className="App" />
+            </ThemeProvider>
+        </ApolloProvider>
+    )
 }
 
 export default App
