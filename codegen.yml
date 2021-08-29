@@ -38,26 +38,6 @@ generates:
             flattenGeneratedTypes: true
             withRefetchFn: true
 
-    # Get name of all queries, mutations and fragments
-    # src/graphql/autogenerate/named-operations.ts:
-    #     plugins:
-    #         - named-operations-object
-    #     config:
-    #         identifierName: namedOperations
-
-    # Get the TypedTypePolicies
-    # src/graphql/autogenerate/apollo-helpers.ts:
-    #     plugins:
-    #         - typescript-apollo-client-helpers
-
-    # Get schema in JSON Format
-    # src/graphql/autogenerate/schema.json:
-    #     documents: "src/graphql/queries/**/**.gql"
-    #     plugins:
-    #         - "introspection"
-    #     config:
-    #         minify: true
-
     # Get schema in graphql Format
     src/graphql/autogenerate/schema.graphql:
         plugins:
