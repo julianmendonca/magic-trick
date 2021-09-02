@@ -28,57 +28,90 @@ export type Int_Comparison_Exp = {
     _nin?: Maybe<Array<Scalars['Int']>>
 }
 
+/** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
+export type String_Comparison_Exp = {
+    _eq?: Maybe<Scalars['String']>
+    _gt?: Maybe<Scalars['String']>
+    _gte?: Maybe<Scalars['String']>
+    /** does the column match the given case-insensitive pattern */
+    _ilike?: Maybe<Scalars['String']>
+    _in?: Maybe<Array<Scalars['String']>>
+    /** does the column match the given POSIX regular expression, case insensitive */
+    _iregex?: Maybe<Scalars['String']>
+    _is_null?: Maybe<Scalars['Boolean']>
+    /** does the column match the given pattern */
+    _like?: Maybe<Scalars['String']>
+    _lt?: Maybe<Scalars['String']>
+    _lte?: Maybe<Scalars['String']>
+    _neq?: Maybe<Scalars['String']>
+    /** does the column NOT match the given case-insensitive pattern */
+    _nilike?: Maybe<Scalars['String']>
+    _nin?: Maybe<Array<Scalars['String']>>
+    /** does the column NOT match the given POSIX regular expression, case insensitive */
+    _niregex?: Maybe<Scalars['String']>
+    /** does the column NOT match the given pattern */
+    _nlike?: Maybe<Scalars['String']>
+    /** does the column NOT match the given POSIX regular expression, case sensitive */
+    _nregex?: Maybe<Scalars['String']>
+    /** does the column NOT match the given SQL regular expression */
+    _nsimilar?: Maybe<Scalars['String']>
+    /** does the column match the given POSIX regular expression, case sensitive */
+    _regex?: Maybe<Scalars['String']>
+    /** does the column match the given SQL regular expression */
+    _similar?: Maybe<Scalars['String']>
+}
+
 /** mutation root */
 export type Mutation_Root = {
     __typename?: 'mutation_root'
-    /** delete data from the table: "test" */
-    delete_test?: Maybe<Test_Mutation_Response>
-    /** delete single row from the table: "test" */
-    delete_test_by_pk?: Maybe<Test>
-    /** insert data into the table: "test" */
-    insert_test?: Maybe<Test_Mutation_Response>
-    /** insert a single row into the table: "test" */
-    insert_test_one?: Maybe<Test>
-    /** update data of the table: "test" */
-    update_test?: Maybe<Test_Mutation_Response>
-    /** update single row of the table: "test" */
-    update_test_by_pk?: Maybe<Test>
+    /** delete data from the table: "user" */
+    delete_user?: Maybe<User_Mutation_Response>
+    /** delete single row from the table: "user" */
+    delete_user_by_pk?: Maybe<User>
+    /** insert data into the table: "user" */
+    insert_user?: Maybe<User_Mutation_Response>
+    /** insert a single row into the table: "user" */
+    insert_user_one?: Maybe<User>
+    /** update data of the table: "user" */
+    update_user?: Maybe<User_Mutation_Response>
+    /** update single row of the table: "user" */
+    update_user_by_pk?: Maybe<User>
 }
 
 /** mutation root */
-export type Mutation_RootDelete_TestArgs = {
-    where: Test_Bool_Exp
+export type Mutation_RootDelete_UserArgs = {
+    where: User_Bool_Exp
 }
 
 /** mutation root */
-export type Mutation_RootDelete_Test_By_PkArgs = {
+export type Mutation_RootDelete_User_By_PkArgs = {
     id: Scalars['Int']
 }
 
 /** mutation root */
-export type Mutation_RootInsert_TestArgs = {
-    objects: Array<Test_Insert_Input>
-    on_conflict?: Maybe<Test_On_Conflict>
+export type Mutation_RootInsert_UserArgs = {
+    objects: Array<User_Insert_Input>
+    on_conflict?: Maybe<User_On_Conflict>
 }
 
 /** mutation root */
-export type Mutation_RootInsert_Test_OneArgs = {
-    object: Test_Insert_Input
-    on_conflict?: Maybe<Test_On_Conflict>
+export type Mutation_RootInsert_User_OneArgs = {
+    object: User_Insert_Input
+    on_conflict?: Maybe<User_On_Conflict>
 }
 
 /** mutation root */
-export type Mutation_RootUpdate_TestArgs = {
-    _inc?: Maybe<Test_Inc_Input>
-    _set?: Maybe<Test_Set_Input>
-    where: Test_Bool_Exp
+export type Mutation_RootUpdate_UserArgs = {
+    _inc?: Maybe<User_Inc_Input>
+    _set?: Maybe<User_Set_Input>
+    where: User_Bool_Exp
 }
 
 /** mutation root */
-export type Mutation_RootUpdate_Test_By_PkArgs = {
-    _inc?: Maybe<Test_Inc_Input>
-    _set?: Maybe<Test_Set_Input>
-    pk_columns: Test_Pk_Columns_Input
+export type Mutation_RootUpdate_User_By_PkArgs = {
+    _inc?: Maybe<User_Inc_Input>
+    _set?: Maybe<User_Set_Input>
+    pk_columns: User_Pk_Columns_Input
 }
 
 /** column ordering options */
@@ -99,222 +132,268 @@ export enum Order_By {
 
 export type Query_Root = {
     __typename?: 'query_root'
-    /** fetch data from the table: "test" */
-    test: Array<Test>
-    /** fetch aggregated fields from the table: "test" */
-    test_aggregate: Test_Aggregate
-    /** fetch data from the table: "test" using primary key columns */
-    test_by_pk?: Maybe<Test>
+    /** fetch data from the table: "user" */
+    user: Array<User>
+    /** fetch aggregated fields from the table: "user" */
+    user_aggregate: User_Aggregate
+    /** fetch data from the table: "user" using primary key columns */
+    user_by_pk?: Maybe<User>
 }
 
-export type Query_RootTestArgs = {
-    distinct_on?: Maybe<Array<Test_Select_Column>>
+export type Query_RootUserArgs = {
+    distinct_on?: Maybe<Array<User_Select_Column>>
     limit?: Maybe<Scalars['Int']>
     offset?: Maybe<Scalars['Int']>
-    order_by?: Maybe<Array<Test_Order_By>>
-    where?: Maybe<Test_Bool_Exp>
+    order_by?: Maybe<Array<User_Order_By>>
+    where?: Maybe<User_Bool_Exp>
 }
 
-export type Query_RootTest_AggregateArgs = {
-    distinct_on?: Maybe<Array<Test_Select_Column>>
+export type Query_RootUser_AggregateArgs = {
+    distinct_on?: Maybe<Array<User_Select_Column>>
     limit?: Maybe<Scalars['Int']>
     offset?: Maybe<Scalars['Int']>
-    order_by?: Maybe<Array<Test_Order_By>>
-    where?: Maybe<Test_Bool_Exp>
+    order_by?: Maybe<Array<User_Order_By>>
+    where?: Maybe<User_Bool_Exp>
 }
 
-export type Query_RootTest_By_PkArgs = {
+export type Query_RootUser_By_PkArgs = {
     id: Scalars['Int']
 }
 
 export type Subscription_Root = {
     __typename?: 'subscription_root'
-    /** fetch data from the table: "test" */
-    test: Array<Test>
-    /** fetch aggregated fields from the table: "test" */
-    test_aggregate: Test_Aggregate
-    /** fetch data from the table: "test" using primary key columns */
-    test_by_pk?: Maybe<Test>
+    /** fetch data from the table: "user" */
+    user: Array<User>
+    /** fetch aggregated fields from the table: "user" */
+    user_aggregate: User_Aggregate
+    /** fetch data from the table: "user" using primary key columns */
+    user_by_pk?: Maybe<User>
 }
 
-export type Subscription_RootTestArgs = {
-    distinct_on?: Maybe<Array<Test_Select_Column>>
+export type Subscription_RootUserArgs = {
+    distinct_on?: Maybe<Array<User_Select_Column>>
     limit?: Maybe<Scalars['Int']>
     offset?: Maybe<Scalars['Int']>
-    order_by?: Maybe<Array<Test_Order_By>>
-    where?: Maybe<Test_Bool_Exp>
+    order_by?: Maybe<Array<User_Order_By>>
+    where?: Maybe<User_Bool_Exp>
 }
 
-export type Subscription_RootTest_AggregateArgs = {
-    distinct_on?: Maybe<Array<Test_Select_Column>>
+export type Subscription_RootUser_AggregateArgs = {
+    distinct_on?: Maybe<Array<User_Select_Column>>
     limit?: Maybe<Scalars['Int']>
     offset?: Maybe<Scalars['Int']>
-    order_by?: Maybe<Array<Test_Order_By>>
-    where?: Maybe<Test_Bool_Exp>
+    order_by?: Maybe<Array<User_Order_By>>
+    where?: Maybe<User_Bool_Exp>
 }
 
-export type Subscription_RootTest_By_PkArgs = {
+export type Subscription_RootUser_By_PkArgs = {
     id: Scalars['Int']
 }
 
-/** columns and relationships of "test" */
-export type Test = {
-    __typename?: 'test'
+/** columns and relationships of "user" */
+export type User = {
+    __typename?: 'user'
+    email?: Maybe<Scalars['String']>
+    first_name: Scalars['String']
+    google_id: Scalars['String']
     id: Scalars['Int']
+    last_name: Scalars['String']
 }
 
-/** aggregated selection of "test" */
-export type Test_Aggregate = {
-    __typename?: 'test_aggregate'
-    aggregate?: Maybe<Test_Aggregate_Fields>
-    nodes: Array<Test>
+/** aggregated selection of "user" */
+export type User_Aggregate = {
+    __typename?: 'user_aggregate'
+    aggregate?: Maybe<User_Aggregate_Fields>
+    nodes: Array<User>
 }
 
-/** aggregate fields of "test" */
-export type Test_Aggregate_Fields = {
-    __typename?: 'test_aggregate_fields'
-    avg?: Maybe<Test_Avg_Fields>
+/** aggregate fields of "user" */
+export type User_Aggregate_Fields = {
+    __typename?: 'user_aggregate_fields'
+    avg?: Maybe<User_Avg_Fields>
     count: Scalars['Int']
-    max?: Maybe<Test_Max_Fields>
-    min?: Maybe<Test_Min_Fields>
-    stddev?: Maybe<Test_Stddev_Fields>
-    stddev_pop?: Maybe<Test_Stddev_Pop_Fields>
-    stddev_samp?: Maybe<Test_Stddev_Samp_Fields>
-    sum?: Maybe<Test_Sum_Fields>
-    var_pop?: Maybe<Test_Var_Pop_Fields>
-    var_samp?: Maybe<Test_Var_Samp_Fields>
-    variance?: Maybe<Test_Variance_Fields>
+    max?: Maybe<User_Max_Fields>
+    min?: Maybe<User_Min_Fields>
+    stddev?: Maybe<User_Stddev_Fields>
+    stddev_pop?: Maybe<User_Stddev_Pop_Fields>
+    stddev_samp?: Maybe<User_Stddev_Samp_Fields>
+    sum?: Maybe<User_Sum_Fields>
+    var_pop?: Maybe<User_Var_Pop_Fields>
+    var_samp?: Maybe<User_Var_Samp_Fields>
+    variance?: Maybe<User_Variance_Fields>
 }
 
-/** aggregate fields of "test" */
-export type Test_Aggregate_FieldsCountArgs = {
-    columns?: Maybe<Array<Test_Select_Column>>
+/** aggregate fields of "user" */
+export type User_Aggregate_FieldsCountArgs = {
+    columns?: Maybe<Array<User_Select_Column>>
     distinct?: Maybe<Scalars['Boolean']>
 }
 
 /** aggregate avg on columns */
-export type Test_Avg_Fields = {
-    __typename?: 'test_avg_fields'
+export type User_Avg_Fields = {
+    __typename?: 'user_avg_fields'
     id?: Maybe<Scalars['Float']>
 }
 
-/** Boolean expression to filter rows from the table "test". All fields are combined with a logical 'AND'. */
-export type Test_Bool_Exp = {
-    _and?: Maybe<Array<Test_Bool_Exp>>
-    _not?: Maybe<Test_Bool_Exp>
-    _or?: Maybe<Array<Test_Bool_Exp>>
+/** Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'. */
+export type User_Bool_Exp = {
+    _and?: Maybe<Array<User_Bool_Exp>>
+    _not?: Maybe<User_Bool_Exp>
+    _or?: Maybe<Array<User_Bool_Exp>>
+    email?: Maybe<String_Comparison_Exp>
+    first_name?: Maybe<String_Comparison_Exp>
+    google_id?: Maybe<String_Comparison_Exp>
     id?: Maybe<Int_Comparison_Exp>
+    last_name?: Maybe<String_Comparison_Exp>
 }
 
-/** unique or primary key constraints on table "test" */
-export enum Test_Constraint {
+/** unique or primary key constraints on table "user" */
+export enum User_Constraint {
     /** unique or primary key constraint */
-    TestPkey = 'test_pkey',
+    UserGoogleIdKey = 'user_google_id_key',
+    /** unique or primary key constraint */
+    UserPkey = 'user_pkey',
 }
 
-/** input type for incrementing numeric columns in table "test" */
-export type Test_Inc_Input = {
+/** input type for incrementing numeric columns in table "user" */
+export type User_Inc_Input = {
     id?: Maybe<Scalars['Int']>
 }
 
-/** input type for inserting data into table "test" */
-export type Test_Insert_Input = {
+/** input type for inserting data into table "user" */
+export type User_Insert_Input = {
+    email?: Maybe<Scalars['String']>
+    first_name?: Maybe<Scalars['String']>
+    google_id?: Maybe<Scalars['String']>
     id?: Maybe<Scalars['Int']>
+    last_name?: Maybe<Scalars['String']>
 }
 
 /** aggregate max on columns */
-export type Test_Max_Fields = {
-    __typename?: 'test_max_fields'
+export type User_Max_Fields = {
+    __typename?: 'user_max_fields'
+    email?: Maybe<Scalars['String']>
+    first_name?: Maybe<Scalars['String']>
+    google_id?: Maybe<Scalars['String']>
     id?: Maybe<Scalars['Int']>
+    last_name?: Maybe<Scalars['String']>
 }
 
 /** aggregate min on columns */
-export type Test_Min_Fields = {
-    __typename?: 'test_min_fields'
+export type User_Min_Fields = {
+    __typename?: 'user_min_fields'
+    email?: Maybe<Scalars['String']>
+    first_name?: Maybe<Scalars['String']>
+    google_id?: Maybe<Scalars['String']>
     id?: Maybe<Scalars['Int']>
+    last_name?: Maybe<Scalars['String']>
 }
 
-/** response of any mutation on the table "test" */
-export type Test_Mutation_Response = {
-    __typename?: 'test_mutation_response'
+/** response of any mutation on the table "user" */
+export type User_Mutation_Response = {
+    __typename?: 'user_mutation_response'
     /** number of rows affected by the mutation */
     affected_rows: Scalars['Int']
     /** data from the rows affected by the mutation */
-    returning: Array<Test>
+    returning: Array<User>
 }
 
-/** on conflict condition type for table "test" */
-export type Test_On_Conflict = {
-    constraint: Test_Constraint
-    update_columns?: Array<Test_Update_Column>
-    where?: Maybe<Test_Bool_Exp>
+/** on conflict condition type for table "user" */
+export type User_On_Conflict = {
+    constraint: User_Constraint
+    update_columns?: Array<User_Update_Column>
+    where?: Maybe<User_Bool_Exp>
 }
 
-/** Ordering options when selecting data from "test". */
-export type Test_Order_By = {
+/** Ordering options when selecting data from "user". */
+export type User_Order_By = {
+    email?: Maybe<Order_By>
+    first_name?: Maybe<Order_By>
+    google_id?: Maybe<Order_By>
     id?: Maybe<Order_By>
+    last_name?: Maybe<Order_By>
 }
 
-/** primary key columns input for table: test */
-export type Test_Pk_Columns_Input = {
+/** primary key columns input for table: user */
+export type User_Pk_Columns_Input = {
     id: Scalars['Int']
 }
 
-/** select columns of table "test" */
-export enum Test_Select_Column {
+/** select columns of table "user" */
+export enum User_Select_Column {
+    /** column name */
+    Email = 'email',
+    /** column name */
+    FirstName = 'first_name',
+    /** column name */
+    GoogleId = 'google_id',
     /** column name */
     Id = 'id',
+    /** column name */
+    LastName = 'last_name',
 }
 
-/** input type for updating data in table "test" */
-export type Test_Set_Input = {
+/** input type for updating data in table "user" */
+export type User_Set_Input = {
+    email?: Maybe<Scalars['String']>
+    first_name?: Maybe<Scalars['String']>
+    google_id?: Maybe<Scalars['String']>
     id?: Maybe<Scalars['Int']>
+    last_name?: Maybe<Scalars['String']>
 }
 
 /** aggregate stddev on columns */
-export type Test_Stddev_Fields = {
-    __typename?: 'test_stddev_fields'
+export type User_Stddev_Fields = {
+    __typename?: 'user_stddev_fields'
     id?: Maybe<Scalars['Float']>
 }
 
 /** aggregate stddev_pop on columns */
-export type Test_Stddev_Pop_Fields = {
-    __typename?: 'test_stddev_pop_fields'
+export type User_Stddev_Pop_Fields = {
+    __typename?: 'user_stddev_pop_fields'
     id?: Maybe<Scalars['Float']>
 }
 
 /** aggregate stddev_samp on columns */
-export type Test_Stddev_Samp_Fields = {
-    __typename?: 'test_stddev_samp_fields'
+export type User_Stddev_Samp_Fields = {
+    __typename?: 'user_stddev_samp_fields'
     id?: Maybe<Scalars['Float']>
 }
 
 /** aggregate sum on columns */
-export type Test_Sum_Fields = {
-    __typename?: 'test_sum_fields'
+export type User_Sum_Fields = {
+    __typename?: 'user_sum_fields'
     id?: Maybe<Scalars['Int']>
 }
 
-/** update columns of table "test" */
-export enum Test_Update_Column {
+/** update columns of table "user" */
+export enum User_Update_Column {
+    /** column name */
+    Email = 'email',
+    /** column name */
+    FirstName = 'first_name',
+    /** column name */
+    GoogleId = 'google_id',
     /** column name */
     Id = 'id',
+    /** column name */
+    LastName = 'last_name',
 }
 
 /** aggregate var_pop on columns */
-export type Test_Var_Pop_Fields = {
-    __typename?: 'test_var_pop_fields'
+export type User_Var_Pop_Fields = {
+    __typename?: 'user_var_pop_fields'
     id?: Maybe<Scalars['Float']>
 }
 
 /** aggregate var_samp on columns */
-export type Test_Var_Samp_Fields = {
-    __typename?: 'test_var_samp_fields'
+export type User_Var_Samp_Fields = {
+    __typename?: 'user_var_samp_fields'
     id?: Maybe<Scalars['Float']>
 }
 
 /** aggregate variance on columns */
-export type Test_Variance_Fields = {
-    __typename?: 'test_variance_fields'
+export type User_Variance_Fields = {
+    __typename?: 'user_variance_fields'
     id?: Maybe<Scalars['Float']>
 }

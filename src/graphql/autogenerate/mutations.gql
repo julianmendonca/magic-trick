@@ -1,0 +1,21 @@
+mutation InsertUser(
+    $googleId: String!
+    $firstName: String
+    $lastName: String
+    $email: String
+) {
+    insert_user_one(
+        object: {
+            email: $email
+            first_name: $firstName
+            google_id: $googleId
+            last_name: $lastName
+        }
+    ) {
+        email
+        first_name
+        google_id
+        id
+        last_name
+    }
+}

@@ -1,5 +1,8 @@
-query GetTests {
-    test {
+query GetUSerByGoogleId($googleId: String!) {
+    user(where: { google_id: { _eq: $googleId } }) {
+        email
         id
+        first_name
+        last_name
     }
 }

@@ -32,79 +32,134 @@ input Int_comparison_exp {
 }
 
 """
+Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+    _eq: String
+    _gt: String
+    _gte: String
+    """
+    does the column match the given case-insensitive pattern
+    """
+    _ilike: String
+    _in: [String!]
+    """
+    does the column match the given POSIX regular expression, case insensitive
+    """
+    _iregex: String
+    _is_null: Boolean
+    """
+    does the column match the given pattern
+    """
+    _like: String
+    _lt: String
+    _lte: String
+    _neq: String
+    """
+    does the column NOT match the given case-insensitive pattern
+    """
+    _nilike: String
+    _nin: [String!]
+    """
+    does the column NOT match the given POSIX regular expression, case insensitive
+    """
+    _niregex: String
+    """
+    does the column NOT match the given pattern
+    """
+    _nlike: String
+    """
+    does the column NOT match the given POSIX regular expression, case sensitive
+    """
+    _nregex: String
+    """
+    does the column NOT match the given SQL regular expression
+    """
+    _nsimilar: String
+    """
+    does the column match the given POSIX regular expression, case sensitive
+    """
+    _regex: String
+    """
+    does the column match the given SQL regular expression
+    """
+    _similar: String
+}
+
+"""
 mutation root
 """
 type mutation_root {
     """
-    delete data from the table: "test"
+    delete data from the table: "user"
     """
-    delete_test(
+    delete_user(
         """
         filter the rows which have to be deleted
         """
-        where: test_bool_exp!
-    ): test_mutation_response
+        where: user_bool_exp!
+    ): user_mutation_response
     """
-    delete single row from the table: "test"
+    delete single row from the table: "user"
     """
-    delete_test_by_pk(id: Int!): test
+    delete_user_by_pk(id: Int!): user
     """
-    insert data into the table: "test"
+    insert data into the table: "user"
     """
-    insert_test(
+    insert_user(
         """
         the rows to be inserted
         """
-        objects: [test_insert_input!]!
+        objects: [user_insert_input!]!
         """
         on conflict condition
         """
-        on_conflict: test_on_conflict
-    ): test_mutation_response
+        on_conflict: user_on_conflict
+    ): user_mutation_response
     """
-    insert a single row into the table: "test"
+    insert a single row into the table: "user"
     """
-    insert_test_one(
+    insert_user_one(
         """
         the row to be inserted
         """
-        object: test_insert_input!
+        object: user_insert_input!
         """
         on conflict condition
         """
-        on_conflict: test_on_conflict
-    ): test
+        on_conflict: user_on_conflict
+    ): user
     """
-    update data of the table: "test"
+    update data of the table: "user"
     """
-    update_test(
+    update_user(
         """
         increments the numeric columns with given value of the filtered values
         """
-        _inc: test_inc_input
+        _inc: user_inc_input
         """
         sets the columns of the filtered rows to the given values
         """
-        _set: test_set_input
+        _set: user_set_input
         """
         filter the rows which have to be updated
         """
-        where: test_bool_exp!
-    ): test_mutation_response
+        where: user_bool_exp!
+    ): user_mutation_response
     """
-    update single row of the table: "test"
+    update single row of the table: "user"
     """
-    update_test_by_pk(
+    update_user_by_pk(
         """
         increments the numeric columns with given value of the filtered values
         """
-        _inc: test_inc_input
+        _inc: user_inc_input
         """
         sets the columns of the filtered rows to the given values
         """
-        _set: test_set_input
-        pk_columns: test_pk_columns_input!
-    ): test
+        _set: user_set_input
+        pk_columns: user_pk_columns_input!
+    ): user
 }
 
 """
@@ -139,13 +194,13 @@ enum order_by {
 
 type query_root {
     """
-    fetch data from the table: "test"
+    fetch data from the table: "user"
     """
-    test(
+    user(
         """
         distinct select on columns
         """
-        distinct_on: [test_select_column!]
+        distinct_on: [user_select_column!]
         """
         limit the number of rows returned
         """
@@ -157,20 +212,20 @@ type query_root {
         """
         sort the rows by one or more columns
         """
-        order_by: [test_order_by!]
+        order_by: [user_order_by!]
         """
         filter the rows returned
         """
-        where: test_bool_exp
-    ): [test!]!
+        where: user_bool_exp
+    ): [user!]!
     """
-    fetch aggregated fields from the table: "test"
+    fetch aggregated fields from the table: "user"
     """
-    test_aggregate(
+    user_aggregate(
         """
         distinct select on columns
         """
-        distinct_on: [test_select_column!]
+        distinct_on: [user_select_column!]
         """
         limit the number of rows returned
         """
@@ -182,27 +237,27 @@ type query_root {
         """
         sort the rows by one or more columns
         """
-        order_by: [test_order_by!]
+        order_by: [user_order_by!]
         """
         filter the rows returned
         """
-        where: test_bool_exp
-    ): test_aggregate!
+        where: user_bool_exp
+    ): user_aggregate!
     """
-    fetch data from the table: "test" using primary key columns
+    fetch data from the table: "user" using primary key columns
     """
-    test_by_pk(id: Int!): test
+    user_by_pk(id: Int!): user
 }
 
 type subscription_root {
     """
-    fetch data from the table: "test"
+    fetch data from the table: "user"
     """
-    test(
+    user(
         """
         distinct select on columns
         """
-        distinct_on: [test_select_column!]
+        distinct_on: [user_select_column!]
         """
         limit the number of rows returned
         """
@@ -214,20 +269,20 @@ type subscription_root {
         """
         sort the rows by one or more columns
         """
-        order_by: [test_order_by!]
+        order_by: [user_order_by!]
         """
         filter the rows returned
         """
-        where: test_bool_exp
-    ): [test!]!
+        where: user_bool_exp
+    ): [user!]!
     """
-    fetch aggregated fields from the table: "test"
+    fetch aggregated fields from the table: "user"
     """
-    test_aggregate(
+    user_aggregate(
         """
         distinct select on columns
         """
-        distinct_on: [test_select_column!]
+        distinct_on: [user_select_column!]
         """
         limit the number of rows returned
         """
@@ -239,109 +294,133 @@ type subscription_root {
         """
         sort the rows by one or more columns
         """
-        order_by: [test_order_by!]
+        order_by: [user_order_by!]
         """
         filter the rows returned
         """
-        where: test_bool_exp
-    ): test_aggregate!
+        where: user_bool_exp
+    ): user_aggregate!
     """
-    fetch data from the table: "test" using primary key columns
+    fetch data from the table: "user" using primary key columns
     """
-    test_by_pk(id: Int!): test
+    user_by_pk(id: Int!): user
 }
 
 """
-columns and relationships of "test"
+columns and relationships of "user"
 """
-type test {
+type user {
+    email: String
+    first_name: String!
+    google_id: String!
     id: Int!
+    last_name: String!
 }
 
 """
-aggregated selection of "test"
+aggregated selection of "user"
 """
-type test_aggregate {
-    aggregate: test_aggregate_fields
-    nodes: [test!]!
+type user_aggregate {
+    aggregate: user_aggregate_fields
+    nodes: [user!]!
 }
 
 """
-aggregate fields of "test"
+aggregate fields of "user"
 """
-type test_aggregate_fields {
-    avg: test_avg_fields
-    count(columns: [test_select_column!], distinct: Boolean): Int!
-    max: test_max_fields
-    min: test_min_fields
-    stddev: test_stddev_fields
-    stddev_pop: test_stddev_pop_fields
-    stddev_samp: test_stddev_samp_fields
-    sum: test_sum_fields
-    var_pop: test_var_pop_fields
-    var_samp: test_var_samp_fields
-    variance: test_variance_fields
+type user_aggregate_fields {
+    avg: user_avg_fields
+    count(columns: [user_select_column!], distinct: Boolean): Int!
+    max: user_max_fields
+    min: user_min_fields
+    stddev: user_stddev_fields
+    stddev_pop: user_stddev_pop_fields
+    stddev_samp: user_stddev_samp_fields
+    sum: user_sum_fields
+    var_pop: user_var_pop_fields
+    var_samp: user_var_samp_fields
+    variance: user_variance_fields
 }
 
 """
 aggregate avg on columns
 """
-type test_avg_fields {
+type user_avg_fields {
     id: Float
 }
 
 """
-Boolean expression to filter rows from the table "test". All fields are combined with a logical 'AND'.
+Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'.
 """
-input test_bool_exp {
-    _and: [test_bool_exp!]
-    _not: test_bool_exp
-    _or: [test_bool_exp!]
+input user_bool_exp {
+    _and: [user_bool_exp!]
+    _not: user_bool_exp
+    _or: [user_bool_exp!]
+    email: String_comparison_exp
+    first_name: String_comparison_exp
+    google_id: String_comparison_exp
     id: Int_comparison_exp
+    last_name: String_comparison_exp
 }
 
 """
-unique or primary key constraints on table "test"
+unique or primary key constraints on table "user"
 """
-enum test_constraint {
+enum user_constraint {
     """
     unique or primary key constraint
     """
-    test_pkey
+    user_google_id_key
+    """
+    unique or primary key constraint
+    """
+    user_pkey
 }
 
 """
-input type for incrementing numeric columns in table "test"
+input type for incrementing numeric columns in table "user"
 """
-input test_inc_input {
+input user_inc_input {
     id: Int
 }
 
 """
-input type for inserting data into table "test"
+input type for inserting data into table "user"
 """
-input test_insert_input {
+input user_insert_input {
+    email: String
+    first_name: String
+    google_id: String
     id: Int
+    last_name: String
 }
 
 """
 aggregate max on columns
 """
-type test_max_fields {
+type user_max_fields {
+    email: String
+    first_name: String
+    google_id: String
     id: Int
+    last_name: String
 }
 
 """
 aggregate min on columns
 """
-type test_min_fields {
+type user_min_fields {
+    email: String
+    first_name: String
+    google_id: String
     id: Int
+    last_name: String
 }
 
 """
-response of any mutation on the table "test"
+response of any mutation on the table "user"
 """
-type test_mutation_response {
+type user_mutation_response {
     """
     number of rows affected by the mutation
     """
@@ -349,104 +428,144 @@ type test_mutation_response {
     """
     data from the rows affected by the mutation
     """
-    returning: [test!]!
+    returning: [user!]!
 }
 
 """
-on conflict condition type for table "test"
+on conflict condition type for table "user"
 """
-input test_on_conflict {
-    constraint: test_constraint!
-    update_columns: [test_update_column!]! = []
-    where: test_bool_exp
+input user_on_conflict {
+    constraint: user_constraint!
+    update_columns: [user_update_column!]! = []
+    where: user_bool_exp
 }
 
 """
-Ordering options when selecting data from "test".
+Ordering options when selecting data from "user".
 """
-input test_order_by {
+input user_order_by {
+    email: order_by
+    first_name: order_by
+    google_id: order_by
     id: order_by
+    last_name: order_by
 }
 
 """
-primary key columns input for table: test
+primary key columns input for table: user
 """
-input test_pk_columns_input {
+input user_pk_columns_input {
     id: Int!
 }
 
 """
-select columns of table "test"
+select columns of table "user"
 """
-enum test_select_column {
+enum user_select_column {
+    """
+    column name
+    """
+    email
+    """
+    column name
+    """
+    first_name
+    """
+    column name
+    """
+    google_id
     """
     column name
     """
     id
+    """
+    column name
+    """
+    last_name
 }
 
 """
-input type for updating data in table "test"
+input type for updating data in table "user"
 """
-input test_set_input {
+input user_set_input {
+    email: String
+    first_name: String
+    google_id: String
     id: Int
+    last_name: String
 }
 
 """
 aggregate stddev on columns
 """
-type test_stddev_fields {
+type user_stddev_fields {
     id: Float
 }
 
 """
 aggregate stddev_pop on columns
 """
-type test_stddev_pop_fields {
+type user_stddev_pop_fields {
     id: Float
 }
 
 """
 aggregate stddev_samp on columns
 """
-type test_stddev_samp_fields {
+type user_stddev_samp_fields {
     id: Float
 }
 
 """
 aggregate sum on columns
 """
-type test_sum_fields {
+type user_sum_fields {
     id: Int
 }
 
 """
-update columns of table "test"
+update columns of table "user"
 """
-enum test_update_column {
+enum user_update_column {
+    """
+    column name
+    """
+    email
+    """
+    column name
+    """
+    first_name
+    """
+    column name
+    """
+    google_id
     """
     column name
     """
     id
+    """
+    column name
+    """
+    last_name
 }
 
 """
 aggregate var_pop on columns
 """
-type test_var_pop_fields {
+type user_var_pop_fields {
     id: Float
 }
 
 """
 aggregate var_samp on columns
 """
-type test_var_samp_fields {
+type user_var_samp_fields {
     id: Float
 }
 
 """
 aggregate variance on columns
 """
-type test_variance_fields {
+type user_variance_fields {
     id: Float
 }
