@@ -1,3 +1,4 @@
+import { Box } from '@material-ui/core'
 import { useEffect, useState } from 'react'
 import SpeechRecognition, {
     useSpeechRecognition,
@@ -34,6 +35,7 @@ export const Home = () => {
     const [suit, setSuit] = useState<Suits>('')
     useEffect(() => {
         if (!listening) SpeechRecognition.startListening({ language })
+        console.log(listening)
     }, [listening])
     useEffect(() => {
         transcript.split(' ').forEach((word) => {
@@ -48,11 +50,27 @@ export const Home = () => {
         })
     }, [transcript])
     return (
-        <div>
-            <p>Value: {value}</p>
-            <p>Suit: {suit}</p>
-            <Card value={value} suit={suit} />
-        </div>
+        <Box
+            style={{
+                backgroundColor: '#696366',
+                width: '100%',
+                height: '100%',
+                position: 'fixed',
+            }}
+        >
+            <Card
+                style={{
+                    height: '80%',
+                    maxHeight: '500px',
+                    position: 'fixed',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%,-50%)',
+                }}
+                value={value}
+                suit={suit}
+            />
+        </Box>
     )
 }
 
