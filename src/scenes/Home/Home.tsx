@@ -87,10 +87,7 @@ const getValue = (value: string) => {
     if (seven.includes(value)) return '7'
     if (eight.includes(value)) return '8'
     if (nine.includes(value)) return '9'
-    if (ten.includes(value)) {
-        alert()
-        return '10'
-    }
+    if (ten.includes(value)) return 't'
     if (j.includes(value)) return 'j'
     if (q.includes(value)) return 'q'
     if (k.includes(value)) return 'k'
@@ -98,7 +95,6 @@ const getValue = (value: string) => {
 }
 
 const getSuit = (suit: string) => {
-    console.log(suit)
     if (hearts.includes(suit)) return 'h'
     if (diamonds.includes(suit)) return 'd'
     if (spades.includes(suit)) return 's'
