@@ -1,7 +1,6 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import { createTheme, ThemeProvider } from '@material-ui/core'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { UserProvider } from './context/UserContext'
 import { Pages } from './scenes/Pages'
 
 const theme = createTheme({
@@ -40,12 +39,10 @@ function App() {
     return (
         <ApolloProvider client={client}>
             <ThemeProvider theme={theme}>
-                <UserProvider>
-                    <Router>
-                        <Pages />
-                    </Router>
-                    <div className="App" />
-                </UserProvider>
+                <Router>
+                    <Pages />
+                </Router>
+                <div className="App" />
             </ThemeProvider>
         </ApolloProvider>
     )

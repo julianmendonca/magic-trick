@@ -1,8 +1,5 @@
-import { useEffect } from 'react'
-import { Route, Switch, useHistory } from 'react-router-dom'
-import { useUserContext } from '../context/UserContext'
+import { Route, Switch } from 'react-router-dom'
 import { Home } from './Home/Home'
-import { Login } from './Login/Login'
 
 type PagesType = {
     name: string
@@ -15,20 +12,9 @@ const pages: { [key: string]: PagesType } = {
         path: '/',
         Component: Home,
     },
-    Login: {
-        name: 'Login',
-        path: '/login',
-        Component: Login,
-    },
 }
 
 export const Pages = () => {
-    const { googleId } = useUserContext()
-    const history = useHistory()
-    useEffect(() => {
-        // if (!googleId) history.push(pages.Login.path)
-    })
-
     return (
         <Switch>
             {Object.keys(pages).map((i) => (
