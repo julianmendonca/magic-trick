@@ -12,6 +12,7 @@ import {
     eight,
     five,
     four,
+    frezeCardWords,
     hearts,
     j,
     k,
@@ -33,11 +34,12 @@ export const Home = () => {
     const { transcript, listening } = useSpeechRecognition()
     const [value, setValue] = useState<Values>('')
     const [suit, setSuit] = useState<Suits>('')
+    const [freezeCard, setFreezeCard] = useState(false)
     useEffect(() => {
         if (!listening) SpeechRecognition.startListening({ language })
-        console.log(listening)
     }, [listening])
     useEffect(() => {
+        if (freezeCard) return
         transcript.split(' ').forEach((word) => {
             if (values.includes(word.toLowerCase())) {
                 const correctValue = getValue(word)
@@ -47,8 +49,9 @@ export const Home = () => {
                 const correctSuit = getSuit(word)
                 setSuit(correctSuit?.toUpperCase() as Suits)
             }
+            if (frezeCardWords.includes(word.toLowerCase())) setFreezeCard(true)
         })
-    }, [transcript])
+    }, [transcript, freezeCard])
     return (
         <Box
             style={{
