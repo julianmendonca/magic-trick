@@ -26,7 +26,7 @@ export const Pages = () => {
     const { googleId } = useUserContext()
     const history = useHistory()
     useEffect(() => {
-        if (!googleId) history.push(pages.Login.path)
+        // if (!googleId) history.push(pages.Login.path)
     })
 
     return (

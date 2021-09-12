@@ -1,0 +1,32 @@
+export const values = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    'j',
+    'q',
+    'k',
+    'a',
+    'as',
+]
+
+export const suits = [
+    'pica',
+    'picas',
+    'trebol',
+    'treboles',
+    'trébol',
+    'tréboles',
+    'corazon',
+    'corazón',
+    'corazones',
+    'diamante',
+    'diamantes',
+    'rombo',
+    'rombos',
+]
