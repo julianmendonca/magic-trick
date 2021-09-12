@@ -33,6 +33,7 @@ export const Pages = () => {
         <Switch>
             {Object.keys(pages).map((i) => (
                 <Route
+                    key={pages[i].name}
                     exact
                     path={pages[i].path}
                     component={pages[i].Component}
